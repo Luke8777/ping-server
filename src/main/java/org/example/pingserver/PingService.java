@@ -18,11 +18,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class PingService {
 
     private static final Logger logger = LoggerFactory.getLogger(PingService.class);
+
     private final WebClient webClient = WebClient.create("http://localhost:8081");
 
     // Rate limiting across Ping instances
     private final AtomicInteger globalRequestCounter = new AtomicInteger(0);
-    private final File lockFile = new File("C:\\Users\\Administrator\\Desktop\\ping.lock");
+
+    private final File lockFile = new File("C:\\Users\\Luke Chen\\Desktop\\ping.lock");
 
     public void sendPings() {
         // Non-blocking interval to send pings every second
