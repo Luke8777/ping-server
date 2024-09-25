@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.io.File;
@@ -28,7 +29,7 @@ public class PingService {
 
     public void sendPings() {
         // Non-blocking interval to send pings every second
-        Mono.delay(Duration.ofSeconds(1))
+        Flux.interval(Duration.ofSeconds(1))
             .flatMap(tick -> attemptPing())
             .subscribe();
     }
